@@ -111,6 +111,13 @@ const OlxAPI = {
         );
         return json;
     },
+    getUser: async (token) => {
+        const json = await apiFetchGet(
+            'user/me',
+            {token}
+        );
+        return json;
+    },
     addAd: async (fData) => {
 
         const json = await apiFetchFile(
