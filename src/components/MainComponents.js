@@ -9,14 +9,11 @@ export const PageContainer = styled.div`
     margin: auto;
 `;
 
-<<<<<<< HEAD
-=======
 export const ModalContainer = styled.div`
     max-width: 600px;
     margin: auto;
 `;
 
->>>>>>> 044be0a0690cb79e6c45331eeae544ccbe236b8a
 export const PageTitle = styled.h1`
     font-size: 27px;
 `;

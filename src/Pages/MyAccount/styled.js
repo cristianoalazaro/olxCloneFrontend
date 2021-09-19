@@ -2,18 +2,11 @@ import styled from 'styled-components';
 
 export const PageArea = styled.div`
     .datas {
-<<<<<<< HEAD
-
-    }
-
-    .posts {
-        
-=======
         form {
             background-color: #FFF;
             border-radius: 3px;
             padding: 10px;
-            box-shaddo: 0px 0px 3px #999;
+            box-shadow: 0px 0px 3px #999;
             margin-top: 20px;
 
             .area {
@@ -76,6 +69,5 @@ export const PageArea = styled.div`
         h2 {
             text-align: center;
         }    
->>>>>>> 044be0a0690cb79e6c45331eeae544ccbe236b8a
     }
 `;
