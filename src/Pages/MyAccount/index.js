@@ -12,6 +12,7 @@ export default function MyAccount(){
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [state, setState] = useState('');
+    const [stateList, setStateList] = useState([]);
 
     const [showModal, setShowModal] = useState(false);
 
@@ -24,7 +25,14 @@ export default function MyAccount(){
             setState(user.state);
             console.log(user);
         }
+
+        const getStates = async () => {
+            const states = await api.getStates();
+            console.log(states);
+            setStateList(states);
+        }
         getUser();
+        getStates();
     },[]);
 
     const handleEdit = (event) =>{
@@ -84,6 +92,7 @@ export default function MyAccount(){
                 name={name}
                 email={email}
                 state={state}
+                stateList={stateList}
                 onClose={closeModal}
                 />
             }

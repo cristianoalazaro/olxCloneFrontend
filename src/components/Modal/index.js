@@ -1,12 +1,18 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 
 import {ModalContainer} from '../../components/MainComponents';
 import {PageArea} from './styled';
 export default function Modal (props) {
-    const [name, setName] = useState('');
-    const [email, seEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [state, setState] = useState('');
+
+    useEffect(() => {
+        document.querySelector('#name').value = props.name;
+        document.querySelector('#email').value = props.email;
+        document.querySelector('#state').value = props.state;
+    },[]);
+
+    const handleSubmit = () => {
+
+    }
 
     const handleClose = () => {
         props.onClose();
@@ -31,28 +37,37 @@ export default function Modal (props) {
                             <label className='area'>
                                 <div className='area-titulo'>Nome</div>
                                 <div className='area-input'>
-                                    <input type='text' name='name' value={props.name} />
+                                    <input type='text' id='name' />
                                     <br /><br />
                                 </div>
                             </label>
                             <label className='area'>
                                 <div className='area-titulo'>E-mail</div>
                                 <div className='area-input'>
-                                    <input type='email' name='email' value={props.email} />
+                                    <input type='email' id='email' />
+                                    <br /><br />
+                                </div>
+                            </label>
+                            <label className='area'>
+                                <div className='area-titulo'>Senha</div>
+                                <div className='area-input'>
+                                    <input type='password' id='password' />
                                     <br /><br />
                                 </div>
                             </label>
                             <label className='area'>
                                 <div className='area-titulo'>Estado</div>
                                 <div className='area-input'>
-                                    <select className='select' name='state' >
-                                        <option>{props.state}</option>
+                                    <select className='select' id='state'>
+                                        {props.stateList.map((list,i)=>
+                                            <option key={i}>{list.name}</option>
+                                        )};
                                     </select>
                                 </div>
                             </label>
                         </div>
                         <div className='buttons'>
-                            <button>Salvar</button>
+                            <button onClick={handleSubmit}>Salvar</button>
                             <button onClick={handleClose}>X</button>
                         </div>
                     </div>    
