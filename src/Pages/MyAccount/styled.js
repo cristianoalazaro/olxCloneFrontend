@@ -2,10 +2,14 @@ import styled from 'styled-components';
 
 export const PageArea = styled.div`
     .datas {
+        h1{
+            text-align:center;
+            color: #0000FF;
+        }
         form {
             background-color: #FFF;
             border-radius: 3px;
-            padding: 10px;
+            padding: 20px;
             box-shadow: 0px 0px 3px #999;
             margin-top: 20px;
 
@@ -69,5 +73,14 @@ export const PageArea = styled.div`
         h2 {
             text-align: center;
         }    
+
+        .list {
+            display: flex;
+            flex-wrap: wrap;
+
+            .aditem{
+                width: 25%;
+            }
+        }
     }
 `;

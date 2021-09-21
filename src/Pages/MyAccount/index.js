@@ -5,6 +5,7 @@ import useApi from '../../helpers/OlxAPI';
 import {PageContainer} from '../../components/MainComponents';
 import {PageArea} from './styled';
 import Modal from '../../components/Modal';
+import AdItem from "../../components/partials/AdItem";
 
 export default function MyAccount(){
     const api = useApi();
@@ -13,6 +14,7 @@ export default function MyAccount(){
     const [email, setEmail] = useState('');
     const [state, setState] = useState('');
     const [stateList, setStateList] = useState([]);
+    const [adsList, setAdsList] = useState([]);
 
     const [showModal, setShowModal] = useState(false);
 
@@ -23,16 +25,25 @@ export default function MyAccount(){
             setName(user.name);
             setEmail(user.email);
             setState(user.state);
-            console.log(user);
         }
-
+        
         const getStates = async () => {
             const states = await api.getStates();
             console.log(states);
             setStateList(states);
         }
+
+        const getAds = async () => {
+            const ads = await api.getAds({
+                sort:'desc',
+                //limit:8
+            });
+            setAdsList(ads.ads);
+        }
+
         getUser();
         getStates();
+        getAds();
     },[]);
 
     const handleEdit = (event) =>{
@@ -49,6 +60,7 @@ export default function MyAccount(){
         <PageContainer>
             <PageArea>
                 <div className='datas'>
+                    <h1>Página do Usuário</h1>
                     <form>
                         <label className='area'>
                             <div className='area-titulo'>Nome</div>
@@ -80,7 +92,8 @@ export default function MyAccount(){
                         <PageArea>
                             <h2>Seus anúncios</h2>
                             <div className='list'>
-                                
+                                {adsList.map((ad,i) => 
+                                <AdItem key={i} data={ad} />)}
                             </div>
                         </PageArea>
                     </PageContainer>
