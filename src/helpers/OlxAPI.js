@@ -70,6 +70,31 @@ const apiFetchGet = async (endpoint, body = []) => {
     return json;
 }
 
+const apiFetchGetNoToken = async (endpoint, body) => {
+    const res = await fetch(BASEAPI + endpoint,body);
+    const json = await res.json();
+    return json;
+}
+
+const apiFetchPut = async (endpoint, body) => {
+    if (!body.token){
+        let token = Cookies.get('token');
+        if (token){
+            body.token = token;
+        }
+    }
+    const res = await fetch(BASEAPI + endpoint,{
+        method: 'PUT',
+        headers: {
+            'Accept': 'Application/json',
+            'Content-type': 'Application/json'
+        },
+        body: JSON.stringify(body) 
+    });
+    const json = await res.json();
+    return json;
+}
+
 const OlxAPI = {
     login: async (email, password) => {
         const json = await apiFetchPost(
@@ -90,6 +115,12 @@ const OlxAPI = {
             'states'
         );
         return json.states;
+    },
+    getStateByName: async (stateName) =>{
+        const json = await apiFetchGetNoToken(
+            `state?state=${stateName}`
+        );
+        return json;
     },
     getCategories: async () => {
         const json = await apiFetchGet(
@@ -124,6 +155,21 @@ const OlxAPI = {
             'ad/add',
             fData
         );
+        return json;
+    },
+    editUser: async (name, email, stateCode, password) => {
+        let token = Cookies.get('token');
+        const user = await apiFetchGet(
+            'user/me',
+            {token}
+        );
+        const data = {
+            name,
+            email,
+            state: stateCode,
+        };
+        if (password) data.password = password;
+        const json = await apiFetchPut('user/me', data);
         return json;
     }
 }

@@ -12,6 +12,7 @@ export default function MyAccount(){
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [state, setState] = useState('');
+    const [password, setPassword] = useState('');
 
     const [showModal, setShowModal] = useState(false);
 
@@ -22,7 +23,6 @@ export default function MyAccount(){
             setName(user.name);
             setEmail(user.email);
             setState(user.state);
-            console.log(user);
         }
         getUser();
     },[]);
@@ -34,6 +34,12 @@ export default function MyAccount(){
 
     const closeModal = () => {
         setShowModal(false);
+    }
+
+    const handleSubmit = async () => {
+        const stateCode = await api.getStateByName(state);
+        const res = await api.editUser(name, email, stateCode, password)
+        if (res) alert(res.result);
     }
 
     return (
@@ -84,7 +90,9 @@ export default function MyAccount(){
                 name={name}
                 email={email}
                 state={state}
+                password={password}
                 onClose={closeModal}
+                onSave={handleSubmit}
                 />
             }
 
