@@ -8,6 +8,16 @@ export default function Modal (props) {
     const [password, setPassword] = useState('');
     const [state, setState] = useState('');
 
+    useEffect(() => {
+        document.querySelector('#name').value = props.name;
+        document.querySelector('#email').value = props.email;
+        document.querySelector('#state').value = props.state;
+    },[]);
+
+    const handleSubmit = () => {
+
+    }
+
     useEffect(()=>{
         setName(props.name);
         setEmail(props.email);
@@ -46,6 +56,7 @@ export default function Modal (props) {
                                         name='name' 
                                         value={name} 
                                         onChange={(event)=>setName(event.target.value)} />
+                                    <input type='text' id='name' />
                                     <br /><br />
                                 </div>
                             </label>
@@ -68,6 +79,10 @@ export default function Modal (props) {
                                         name='state' 
                                         onChange={(event)=>setState(event.target.value)}>
                                         <option>{state}</option>
+                                    <select className='select' id='state'>
+                                        {props.stateList.map((list,i)=>
+                                            <option key={i}>{list.name}</option>
+                                        )};
                                     </select>
                                 </div>
                             </label>

@@ -5,6 +5,7 @@ import useApi from '../../helpers/OlxAPI';
 import {PageContainer} from '../../components/MainComponents';
 import {PageArea} from './styled';
 import Modal from '../../components/Modal';
+import AdItem from "../../components/partials/AdItem";
 
 export default function MyAccount(){
     const api = useApi();
@@ -24,7 +25,24 @@ export default function MyAccount(){
             setEmail(user.email);
             setState(user.state);
         }
+        
+        const getStates = async () => {
+            const states = await api.getStates();
+            console.log(states);
+            setStateList(states);
+        }
+
+        const getAds = async () => {
+            const ads = await api.getAds({
+                sort:'desc',
+                //limit:8
+            });
+            setAdsList(ads.ads);
+        }
+
         getUser();
+        getStates();
+        getAds();
     },[]);
 
     const handleEdit = (event) =>{
@@ -47,6 +65,7 @@ export default function MyAccount(){
         <PageContainer>
             <PageArea>
                 <div className='datas'>
+                    <h1>Página do Usuário</h1>
                     <form>
                         <label className='area'>
                             <div className='area-titulo'>Nome</div>
@@ -78,7 +97,8 @@ export default function MyAccount(){
                         <PageArea>
                             <h2>Seus anúncios</h2>
                             <div className='list'>
-                                
+                                {adsList.map((ad,i) => 
+                                <AdItem key={i} data={ad} />)}
                             </div>
                         </PageArea>
                     </PageContainer>
@@ -91,6 +111,7 @@ export default function MyAccount(){
                 email={email}
                 state={state}
                 password={password}
+                stateList={stateList}
                 onClose={closeModal}
                 onSave={handleSubmit}
                 />

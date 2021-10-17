@@ -51,6 +51,32 @@ const apiFetchPost = async (endpoint, body) => {
     return json;
 }
 
+const apiFetchPut = async (endpoint, body = []) => {
+    if (!body.token){
+        let token = Cookies.get('token');
+        if (token){
+            body.token = token;
+        }
+    }
+
+    const res = await fetch(BASEAPI + endpoint, {
+        method:'PUT',
+        headers:{
+            'Accept':'Application/json',
+            'Content-type':'application/json'
+        },
+        body:JSON.stringify(body)
+    });
+    const json = await res.json();
+
+    if (json.notallowed){
+        window.location.href = '/signin';
+        return;
+    }
+
+    return json;
+}
+
 const apiFetchGet = async (endpoint, body = []) => {
     if (!body.token){
         let token = Cookies.get('token');
@@ -107,6 +133,13 @@ const OlxAPI = {
         const json = await apiFetchPost(
             'user/signup',
             {name, email, password, state:stateLoc}
+        );
+        return json;
+    },
+    userUpdate: async (data) => {
+        const json = await apiFetchPut(
+            'user/me',
+            data
         );
         return json;
     },
