@@ -14,6 +14,8 @@ export default function MyAccount(){
     const [email, setEmail] = useState('');
     const [state, setState] = useState('');
     const [password, setPassword] = useState('');
+    const [stateList, setStateList] = useState([]);
+    const [adsList, setAdsList] = useState([]);
 
     const [showModal, setShowModal] = useState(false);
 

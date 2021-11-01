@@ -97,18 +97,11 @@ const apiFetchGet = async (endpoint, body = []) => {
 }
 
 const apiFetchGetNoToken = async (endpoint, body) => {
-    const res = await fetch(BASEAPI + endpoint,body);
-    const json = await res.json();
-    return json;
-}
+//     const res = await fetch(BASEAPI + endpoint,body);
+//     const json = await res.json();
+//     return json;
+// }
 
-const apiFetchPut = async (endpoint, body) => {
-    if (!body.token){
-        let token = Cookies.get('token');
-        if (token){
-            body.token = token;
-        }
-    }
     const res = await fetch(BASEAPI + endpoint,{
         method: 'PUT',
         headers: {

@@ -8,19 +8,16 @@ export default function Modal (props) {
     const [password, setPassword] = useState('');
     const [state, setState] = useState('');
 
-    useEffect(() => {
-        document.querySelector('#name').value = props.name;
-        document.querySelector('#email').value = props.email;
-        document.querySelector('#state').value = props.state;
-    },[]);
+    // useEffect(() => {
+    //     document.querySelector('#name').value = props.name;
+    //     document.querySelector('#email').value = props.email;
+    //     document.querySelector('#state').value = props.state;
+    // },[]);
 
-    const handleSubmit = () => {
-
-    }
-
-    useEffect(()=>{
+     useEffect(()=>{
         setName(props.name);
         setEmail(props.email);
+        setState(props.state);
         setPassword(props.password);
     },[]);
 
@@ -56,7 +53,6 @@ export default function Modal (props) {
                                         name='name' 
                                         value={name} 
                                         onChange={(event)=>setName(event.target.value)} />
-                                    <input type='text' id='name' />
                                     <br /><br />
                                 </div>
                             </label>
@@ -75,11 +71,11 @@ export default function Modal (props) {
                                 <div className='area-titulo'>Estado</div>
                                 <div className='area-input'>
                                     <select 
+                                        id='state'
                                         className='select' 
                                         name='state' 
                                         onChange={(event)=>setState(event.target.value)}>
                                         <option>{state}</option>
-                                    <select className='select' id='state'>
                                         {props.stateList.map((list,i)=>
                                             <option key={i}>{list.name}</option>
                                         )};
