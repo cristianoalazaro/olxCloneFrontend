@@ -103,4 +103,31 @@ export const PageArea = styled.div`
             }
         }
     }
+
+    @media(max-width:600px){
+        &{
+            flex-direction: column;
+        }
+        .leftside{
+            width: 100%;
+            margin: auto;
+            padding: 10px;
+
+            ul{
+                display: flex;
+                flex-wrap: wrap;
+
+                li{
+                width: 50%;
+                }
+            }
+        }
+        .rightside{
+            margin: 10px;
+
+            .list .aditem{
+                width: 50%;
+            }
+        }
+    }
 `;

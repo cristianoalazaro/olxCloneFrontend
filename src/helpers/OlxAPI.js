@@ -1,7 +1,8 @@
 import Cookies from 'js-cookie';
 import qs from 'qs';
 
-const BASEAPI = 'http://localhost:3001/';
+//const BASEAPI = 'http://localhost:3001/';
+const BASEAPI = 'olxclone';
 
 const apiFetchFile = async (endpoint, body) => {
 

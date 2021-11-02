@@ -23,7 +23,7 @@ export const PageArea = styled.div`
             .area-input{
                 flex: 1;
 
-                input{
+                input, select{
                     width: 100%;
                     font-size: 14px;
                     padding: 5px;
@@ -57,6 +57,28 @@ export const PageArea = styled.div`
                 }
 
 
+            }
+        }
+    }
+
+    @media(max-width:600px){
+        form{
+            .area{
+                flex-direction: column;
+
+                .area-titulo{
+                    width: 100%;
+                    text-align: left;
+                    margin-bottom: 10px;
+                }
+                .area-input{
+                    width: 100%;
+
+                    button{
+                        width: 100%;
+                        padding: 10px;
+                    }
+                }
             }
         }
     }
