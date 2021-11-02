@@ -97,22 +97,22 @@ const apiFetchGet = async (endpoint, body = []) => {
 }
 
 const apiFetchGetNoToken = async (endpoint, body) => {
-//     const res = await fetch(BASEAPI + endpoint,body);
-//     const json = await res.json();
-//     return json;
-// }
-
-    const res = await fetch(BASEAPI + endpoint,{
-        method: 'PUT',
-        headers: {
-            'Accept': 'Application/json',
-            'Content-type': 'Application/json'
-        },
-        body: JSON.stringify(body) 
-    });
+    const res = await fetch(BASEAPI + endpoint,body);
     const json = await res.json();
     return json;
 }
+
+//     const res = await fetch(BASEAPI + endpoint,{
+//         method: 'PUT',
+//         headers: {
+//             'Accept': 'Application/json',
+//             'Content-type': 'Application/json'
+//         },
+//         body: JSON.stringify(body) 
+//     });
+//     const json = await res.json();
+//     return json;
+// }
 
 const OlxAPI = {
     login: async (email, password) => {

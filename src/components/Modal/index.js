@@ -26,7 +26,7 @@ export default function Modal (props) {
     }
 
     const handleSubmit = () =>{
-        props.onSave();
+        props.onSave(name, email, state, password);
     }
 
     document.addEventListener('keydown',(event)=>{
@@ -49,6 +49,7 @@ export default function Modal (props) {
                                 <div className='area-titulo'>Nome</div>
                                 <div className='area-input'>
                                     <input 
+                                        id='name'
                                         type='text' 
                                         name='name' 
                                         value={name} 

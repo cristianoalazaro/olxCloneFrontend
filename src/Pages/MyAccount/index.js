@@ -30,7 +30,6 @@ export default function MyAccount(){
         
         const getStates = async () => {
             const states = await api.getStates();
-            console.log(states);
             setStateList(states);
         }
 
@@ -56,8 +55,9 @@ export default function MyAccount(){
         setShowModal(false);
     }
 
-    const handleSubmit = async () => {
+    const handleSubmit = async (name, email, state, password) => {
         const stateCode = await api.getStateByName(state);
+        console.log(name);
         const res = await api.editUser(name, email, stateCode, password)
         if (res) alert(res.result);
     }
